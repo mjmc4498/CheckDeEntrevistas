@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
         tableBody.innerHTML = '';
         data.forEach(interview => {
             const row = document.createElement('tr');
+            const indicators = interview.indicators;
+            const attitudeScore = indicators ? Object.values(indicators).reduce((acc, category) => {
+                return acc + Object.values(category).reduce((sum, value) => sum + parseInt(value), 0);
+            }, 0) : 0;
+
             row.innerHTML = `
                 <td>${interview.candidateName}</td>
                 <td>${interview.evaluatorName}</td>
@@ -15,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${interview.interviewTime}</td>
                 <td>${interview.candidateRole}</td>
                 <td>${interview.totalScore}</td>
+                <td>${attitudeScore}</td>
                 <td>${interview.suggestedLevel}</td>
             `;
             tableBody.appendChild(row);
@@ -37,8 +43,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function exportToCsv() {
-        const headers = ['Candidato', 'Evaluador', 'Fecha', 'Hora', 'Rol', 'Puntaje Total', 'Nivel Sugerido'];
-        const rows = interviews.map(i => [i.candidateName, i.evaluatorName, i.interviewDate, i.interviewTime, i.candidateRole, i.totalScore, i.suggestedLevel]);
+        const headers = ['Candidato', 'Evaluador', 'Fecha', 'Hora', 'Rol', 'Puntaje Técnico', 'Puntaje Actitudinal', 'Nivel Sugerido'];
+        const rows = interviews.map(i => {
+            const indicators = i.indicators;
+            const attitudeScore = indicators ? Object.values(indicators).reduce((acc, category) => {
+                return acc + Object.values(category).reduce((sum, value) => sum + parseInt(value), 0);
+            }, 0) : 0;
+            return [i.candidateName, i.evaluatorName, i.interviewDate, i.interviewTime, i.candidateRole, i.totalScore, attitudeScore, i.suggestedLevel];
+        });
         let csvContent = "data:text/csv;charset=utf-8," + headers.join(",") + "\n" + rows.map(e => e.join(",")).join("\n");
         var encodedUri = encodeURI(csvContent);
         var link = document.createElement("a");
@@ -49,13 +61,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.removeChild(link);
     }
 
-    searchInput.addEventListener('input', (e) => {
+    if(searchInput) searchInput.addEventListener('input', (e) => {
         const query = e.target.value;
         const filteredData = filterData(query);
         renderTable(filteredData);
     });
 
-    exportButton.addEventListener('click', exportToCsv);
+    if(exportButton) exportButton.addEventListener('click', exportToCsv);
 
     renderTable(interviews);
 });

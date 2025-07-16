@@ -48,10 +48,6 @@
                                 <label for="interview-time">Hora de Entrevista</label>
                                 <input type="time" id="interview-time">
                             </div>
-                             <div class="form-group">
-                                <label for="additional-notes">Notas Adicionales</label>
-                                <textarea id="additional-notes" rows="3" placeholder="Comentarios..."></textarea>
-                            </div>
                         </div>
                     </div>
 
@@ -61,6 +57,116 @@
                             <!-- Las competencias se agregarán aquí dinámicamente -->
                         </div>
                         <button type="button" class="btn btn-add-skill">Agregar Competencia</button>
+                    </div>
+
+                    <div class="form-section">
+                        <h2>Indicadores Generales</h2>
+                        <div class="indicators-grid">
+                            <!-- Conocimiento Técnico -->
+                            <div class="indicator-card">
+                                <h3>Conocimiento Técnico</h3>
+                                <div class="rating-group">
+                                    <label>Nivel de dominio:</label>
+                                    <input type="range" min="1" max="5" value="3" id="conocimiento-dominio">
+                                </div>
+                                <div class="rating-group">
+                                    <label>Precisión en respuestas:</label>
+                                    <input type="range" min="1" max="5" value="3" id="conocimiento-precision">
+                                </div>
+                                <div class="rating-group">
+                                    <label>Aplicación práctica:</label>
+                                    <input type="range" min="1" max="5" value="3" id="conocimiento-aplicacion">
+                                </div>
+                            </div>
+                            <!-- Habilidades Técnicas Aplicadas -->
+                            <div class="indicator-card">
+                                <h3>Habilidades Técnicas Aplicadas</h3>
+                                <div class="rating-group">
+                                    <label>Resolución de problemas:</label>
+                                    <input type="range" min="1" max="5" value="3" id="habilidades-resolucion">
+                                </div>
+                                <div class="rating-group">
+                                    <label>Eficiencia en pruebas:</label>
+                                    <input type="range" min="1" max="5" value="3" id="habilidades-eficiencia">
+                                </div>
+                                <div class="rating-group">
+                                    <label>Detección de errores:</label>
+                                    <input type="range" min="1" max="5" value="3" id="habilidades-errores">
+                                </div>
+                            </div>
+                            <!-- Comunicación -->
+                            <div class="indicator-card">
+                                <h3>Comunicación</h3>
+                                <div class="rating-group">
+                                    <label>Claridad y estructura:</label>
+                                    <input type="range" min="1" max="5" value="3" id="comunicacion-claridad">
+                                </div>
+                                <div class="rating-group">
+                                    <label>Explicación de temas complejos:</label>
+                                    <input type="range" min="1" max="5" value="3" id="comunicacion-complejos">
+                                </div>
+                                <div class="rating-group">
+                                    <label>Escucha activa:</label>
+                                    <input type="range" min="1" max="5" value="3" id="comunicacion-escucha">
+                                </div>
+                            </div>
+                            <!-- Criterio y Toma de Decisiones -->
+                            <div class="indicator-card">
+                                <h3>Criterio y Toma de Decisiones</h3>
+                                <div class="rating-group">
+                                    <label>Lógica en argumentación:</label>
+                                    <input type="range" min="1" max="5" value="3" id="criterio-logica">
+                                </div>
+                                <div class="rating-group">
+                                    <label>Evaluación de escenarios:</label>
+                                    <input type="range" min="1" max="5" value="3" id="criterio-escenarios">
+                                </div>
+                                <div class="rating-group">
+                                    <label>Enfoque en soluciones:</label>
+                                    <input type="range" min="1" max="5" value="3" id="criterio-soluciones">
+                                </div>
+                            </div>
+                            <!-- Fit Cultural y de Equipo -->
+                            <div class="indicator-card">
+                                <h3>Fit Cultural y de Equipo</h3>
+                                <div class="rating-group">
+                                    <label>Alineamiento con valores:</label>
+                                    <input type="range" min="1" max="5" value="3" id="fit-valores">
+                                </div>
+                                <div class="rating-group">
+                                    <label>Estilo de trabajo:</label>
+                                    <input type="range" min="1" max="5" value="3" id="fit-trabajo">
+                                </div>
+                                <div class="rating-group">
+                                    <label>Adaptabilidad:</label>
+                                    <input type="range" min="1" max="5" value="3" id="fit-adaptabilidad">
+                                </div>
+                            </div>
+                            <!-- Motivación y Potencial -->
+                            <div class="indicator-card">
+                                <h3>Motivación y Potencial</h3>
+                                <div class="rating-group">
+                                    <label>Interés por el puesto:</label>
+                                    <input type="range" min="1" max="5" value="3" id="motivacion-interes">
+                                </div>
+                                <div class="rating-group">
+                                    <label>Proyección de crecimiento:</label>
+                                    <input type="range" min="1" max="5" value="3" id="motivacion-proyeccion">
+                                </div>
+                                <div class="rating-group">
+                                    <label>Iniciativa:</label>
+                                    <input type="range" min="1" max="5" value="3" id="motivacion-iniciativa">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2>Evaluación Global</h2>
+                        <div class="form-group">
+                            <label for="additional-notes">Recomendación final del entrevistador</label>
+                            <textarea id="additional-notes" rows="4" placeholder="Comentarios..."></textarea>
+                        </div>
                     </div>
 
                     <button type="submit" class="btn btn-submit">Guardar y Evaluar</button>

@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const addSkillBtn = document.querySelector('.btn-add-skill');
     const skillsSection = document.querySelector('.skills-section');
-    const form = document.querySelector('.neumorphism-form');
+    const form = document.querySelector('.glassmorphism-form');
 
     // Function to add a new skill input group
     const addSkill = () => {
@@ -31,10 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Event listener for adding a skill
-    addSkillBtn.addEventListener('click', addSkill);
+    if(addSkillBtn) addSkillBtn.addEventListener('click', addSkill);
 
     // Handle form submission
-    form.addEventListener('submit', (e) => {
+    if(form) form.addEventListener('submit', (e) => {
         e.preventDefault();
 
         // Gather skills data
@@ -59,6 +59,40 @@ document.addEventListener('DOMContentLoaded', () => {
             suggestedLevel = 'Semi Senior';
         }
 
+        // Gather indicators data
+        const indicators = {
+            conocimiento: {
+                dominio: document.getElementById('conocimiento-dominio').value,
+                precision: document.getElementById('conocimiento-precision').value,
+                aplicacion: document.getElementById('conocimiento-aplicacion').value,
+            },
+            habilidades: {
+                resolucion: document.getElementById('habilidades-resolucion').value,
+                eficiencia: document.getElementById('habilidades-eficiencia').value,
+                errores: document.getElementById('habilidades-errores').value,
+            },
+            comunicacion: {
+                claridad: document.getElementById('comunicacion-claridad').value,
+                complejos: document.getElementById('comunicacion-complejos').value,
+                escucha: document.getElementById('comunicacion-escucha').value,
+            },
+            criterio: {
+                logica: document.getElementById('criterio-logica').value,
+                escenarios: document.getElementById('criterio-escenarios').value,
+                soluciones: document.getElementById('criterio-soluciones').value,
+            },
+            fit: {
+                valores: document.getElementById('fit-valores').value,
+                trabajo: document.getElementById('fit-trabajo').value,
+                adaptabilidad: document.getElementById('fit-adaptabilidad').value,
+            },
+            motivacion: {
+                interes: document.getElementById('motivacion-interes').value,
+                proyeccion: document.getElementById('motivacion-proyeccion').value,
+                iniciativa: document.getElementById('motivacion-iniciativa').value,
+            }
+        };
+
         // Gather all form data
         const interviewData = {
             candidateName: document.getElementById('candidate-name').value,
@@ -69,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
             skills,
             totalScore,
             suggestedLevel,
+            indicators,
             additionalNotes: document.getElementById('additional-notes').value,
         };
 
@@ -90,8 +125,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const resultsContainer = document.querySelector('.results-container');
         resultsContainer.innerHTML = `
             <h2>Resultados de la Evaluación</h2>
-            <p><strong>Puntaje Total:</strong> ${data.totalScore}</p>
+            <p><strong>Puntaje Técnico Consolidado:</strong> ${data.totalScore}</p>
             <p><strong>Nivel Sugerido:</strong> ${data.suggestedLevel}</p>
+            <p><strong>Recomendación Final:</strong> ${data.additionalNotes}</p>
         `;
         resultsContainer.style.display = 'block';
     };
