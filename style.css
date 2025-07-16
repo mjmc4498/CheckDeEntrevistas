@@ -1,0 +1,149 @@
+:root {
+    --bg-color: #e0f0f3;
+    --primary-color: #3d8bfd;
+    --font-color: #3a5b78;
+    --light-shadow: #ffffff;
+    --dark-shadow: #b8c6d1;
+    --border-radius: 15px;
+    --transition-speed: 0.3s;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--font-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    max-width: 700px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--font-color);
+    margin-bottom: 40px;
+    text-shadow: 1px 1px 2px var(--light-shadow);
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--font-color);
+    margin: 40px 0 20px;
+    text-shadow: 1px 1px 2px var(--light-shadow);
+}
+
+.neumorphism-form {
+    background: var(--bg-color);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 10px 10px 20px var(--dark-shadow), -10px -10px 20px var(--light-shadow);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--bg-color);
+    box-shadow: inset 6px 6px 12px var(--dark-shadow), inset -6px -6px 12px var(--light-shadow);
+    color: var(--font-color);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    transition: box-shadow var(--transition-speed);
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    box-shadow: inset 4px 4px 8px var(--dark-shadow), inset -4px -4px 8px var(--light-shadow), 2px 2px 5px var(--dark-shadow), -2px -2px 5px var(--light-shadow);
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .form-group {
+    width: 100%;
+}
+
+.btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all var(--transition-speed);
+    margin-top: 10px;
+}
+
+.btn-add-skill {
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    box-shadow: 6px 6px 12px var(--dark-shadow), -6px -6px 12px var(--light-shadow);
+}
+
+.btn-add-skill:hover {
+    color: var(--font-color);
+    box-shadow: 4px 4px 8px var(--dark-shadow), -4px -4px 8px var(--light-shadow);
+}
+
+.btn-add-skill:active {
+    box-shadow: inset 6px 6px 12px var(--dark-shadow), inset -6px -6px 12px var(--light-shadow);
+}
+
+.btn-submit {
+    background-color: var(--primary-color);
+    color: #fff;
+    box-shadow: 6px 6px 12px var(--dark-shadow), -6px -6px 12px var(--light-shadow);
+}
+
+.btn-submit:hover {
+    background-color: #3178d8;
+}
+
+.btn-submit:active {
+    box-shadow: inset 6px 6px 12px #2a66b5, inset -6px -6px 12px #50a0ff;
+}
+
+/* Specific styles for date/time inputs */
+input[type="date"], input[type="time"] {
+    position: relative;
+}
+
+/* Optional: Adding icons (pseudo-elements) */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+}
+
+input[type="time"]::-webkit-access-key {
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+}

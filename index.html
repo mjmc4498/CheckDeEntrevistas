@@ -1,67 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interview App</title>
-    <link rel="stylesheet" href="static/css/style.css">
+    <title>Evaluación de Entrevista Técnica - Neumorphism UI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="root">
-        <div class="sidebar">
-            <a href="index.html">Formulario</a>
-            <a href="backlog.html">Backlog</a>
-            <a href="dashboard.html">Dashboard</a>
-            <div class="theme-switch-wrapper">
-                <label class="theme-switch" for="checkbox">
-                    <input type="checkbox" id="checkbox" />
-                    <div class="slider round"></div>
-                </label>
-                <em>Modo Oscuro</em>
+    <div class="container">
+        <h1>Evaluación de Entrevista Técnica</h1>
+        <form class="neumorphism-form">
+            <div class="form-group">
+                <label for="candidate-name">Nombre del Candidato</label>
+                <input type="text" id="candidate-name" placeholder="Ingrese el nombre...">
             </div>
-        </div>
-
-        <div class="content">
-            <div class="container">
-                <h1>Evaluación de Entrevista Técnica</h1>
-                <form id="interview-form">
-                    <div class="form-group">
-                        <label for="candidate-name">Nombre del Candidato:</label>
-                        <input type="text" id="candidate-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="evaluator-name">Nombre del Evaluador:</label>
-                        <input type="text" id="evaluator-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="interview-date">Fecha de Entrevista:</label>
-                        <input type="date" id="interview-date" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="interview-time">Hora de Entrevista:</label>
-                        <input type="time" id="interview-time" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="candidate-role">Rol del Candidato:</label>
-                        <input type="text" id="candidate-role" required>
-                    </div>
-
-                    <h2>Competencias Técnicas</h2>
-                    <div id="technical-skills">
-                        <!-- Skills will be added here dynamically -->
-                    </div>
-                    <button type="button" id="add-skill">Agregar Competencia</button>
-
-                    <div class="form-group">
-                        <label for="additional-notes">Notas Adicionales:</label>
-                        <textarea id="additional-notes"></textarea>
-                    </div>
-
-                    <button type="submit">Guardar Entrevista</button>
-                </form>
+            <div class="form-group">
+                <label for="evaluator-name">Nombre del Evaluador</label>
+                <input type="text" id="evaluator-name" placeholder="Ingrese su nombre...">
             </div>
-        </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="interview-date">Fecha de Entrevista</label>
+                    <input type="date" id="interview-date">
+                </div>
+                <div class="form-group">
+                    <label for="interview-time">Hora de Entrevista</label>
+                    <input type="time" id="interview-time">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="candidate-role">Rol del Candidato</label>
+                <input type="text" id="candidate-role" placeholder="Ej. Data Engineer, Data Analyst...">
+            </div>
+
+            <h2>Competencias Técnicas</h2>
+            <div class="skills-section">
+                <!-- Las competencias se agregarán aquí dinámicamente -->
+            </div>
+            <button type="button" class="btn btn-add-skill">Agregar Competencia</button>
+
+            <div class="form-group">
+                <label for="additional-notes">Notas Adicionales</label>
+                <textarea id="additional-notes" rows="4" placeholder="Comentarios..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-submit">Guardar Entrevista</button>
+        </form>
     </div>
-    <script type="module" src="static/js/app.js"></script>
 </body>
 </html>
