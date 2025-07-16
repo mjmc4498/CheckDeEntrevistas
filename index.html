@@ -9,59 +9,67 @@
 </head>
 <body>
     <div class="background-shapes"></div>
-    <nav class="navbar">
+    <button class="sidebar-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <nav class="sidebar">
         <a href="index.html" class="nav-link active">Formulario</a>
         <a href="backlog.html" class="nav-link">Registros</a>
         <a href="dashboard.html" class="nav-link">Indicadores</a>
     </nav>
-    <div class="container">
-        <div class="main-card">
-            <h1>Evaluación de Entrevista Técnica</h1>
-            <form class="glassmorphism-form">
-                <div class="form-section">
-                    <div class="form-column">
-                        <div class="form-group">
-                            <label for="candidate-name">Nombre del Candidato</label>
-                            <input type="text" id="candidate-name" placeholder="Ingrese el nombre...">
+    <div class="main-content">
+        <div class="container">
+            <div class="main-card">
+                <h1>Evaluación de Entrevista Técnica</h1>
+                <form class="glassmorphism-form">
+                    <div class="form-section">
+                        <div class="form-column">
+                            <div class="form-group">
+                                <label for="candidate-name">Nombre del Candidato</label>
+                                <input type="text" id="candidate-name" placeholder="Ingrese el nombre...">
+                            </div>
+                            <div class="form-group">
+                                <label for="evaluator-name">Nombre del Evaluador</label>
+                                <input type="text" id="evaluator-name" placeholder="Ingrese su nombre...">
+                            </div>
+                             <div class="form-group">
+                                <label for="candidate-role">Rol del Candidato</label>
+                                <input type="text" id="candidate-role" placeholder="Ej. Data Engineer, Data Analyst...">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="evaluator-name">Nombre del Evaluador</label>
-                            <input type="text" id="evaluator-name" placeholder="Ingrese su nombre...">
-                        </div>
-                         <div class="form-group">
-                            <label for="candidate-role">Rol del Candidato</label>
-                            <input type="text" id="candidate-role" placeholder="Ej. Data Engineer, Data Analyst...">
+                        <div class="form-column">
+                            <div class="form-group">
+                                <label for="interview-date">Fecha de Entrevista</label>
+                                <input type="date" id="interview-date">
+                            </div>
+                            <div class="form-group">
+                                <label for="interview-time">Hora de Entrevista</label>
+                                <input type="time" id="interview-time">
+                            </div>
+                             <div class="form-group">
+                                <label for="additional-notes">Notas Adicionales</label>
+                                <textarea id="additional-notes" rows="3" placeholder="Comentarios..."></textarea>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-column">
-                        <div class="form-group">
-                            <label for="interview-date">Fecha de Entrevista</label>
-                            <input type="date" id="interview-date">
-                        </div>
-                        <div class="form-group">
-                            <label for="interview-time">Hora de Entrevista</label>
-                            <input type="time" id="interview-time">
-                        </div>
-                         <div class="form-group">
-                            <label for="additional-notes">Notas Adicionales</label>
-                            <textarea id="additional-notes" rows="3" placeholder="Comentarios..."></textarea>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="form-section">
-                    <h2>Competencias Técnicas</h2>
-                    <div class="skills-section">
-                        <!-- Las competencias se agregarán aquí dinámicamente -->
+                    <div class="form-section">
+                        <h2>Competencias Técnicas</h2>
+                        <div class="skills-section">
+                            <!-- Las competencias se agregarán aquí dinámicamente -->
+                        </div>
+                        <button type="button" class="btn btn-add-skill">Agregar Competencia</button>
                     </div>
-                    <button type="button" class="btn btn-add-skill">Agregar Competencia</button>
-                </div>
 
-                <button type="submit" class="btn btn-submit">Guardar y Evaluar</button>
-            </form>
-            <div class="results-container"></div>
+                    <button type="submit" class="btn btn-submit">Guardar y Evaluar</button>
+                </form>
+                <div class="results-container"></div>
+            </div>
         </div>
     </div>
+    <script src="sidebar.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

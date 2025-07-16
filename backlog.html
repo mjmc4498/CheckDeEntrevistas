@@ -9,34 +9,46 @@
 </head>
 <body>
     <div class="background-shapes"></div>
-    <nav class="navbar">
+    <button class="sidebar-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <nav class="sidebar">
         <a href="index.html" class="nav-link">Formulario</a>
         <a href="backlog.html" class="nav-link active">Registros</a>
         <a href="dashboard.html" class="nav-link">Indicadores</a>
     </nav>
-    <div class="container">
-        <div class="main-card">
-            <h1>Registros de Entrevistas</h1>
-            <div class="table-container">
-                <table id="interviews-table">
-                    <thead>
-                        <tr>
-                            <th>Candidato</th>
-                            <th>Evaluador</th>
-                            <th>Fecha</th>
-                            <th>Hora</th>
-                            <th>Rol</th>
-                            <th>Puntaje Total</th>
-                            <th>Nivel Sugerido</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Data will be loaded here by JavaScript -->
-                    </tbody>
-                </table>
+    <div class="main-content">
+        <div class="container">
+            <div class="main-card">
+                <h1>Registros de Entrevistas</h1>
+                <div class="table-controls">
+                    <input type="text" id="search-input" placeholder="Buscar en registros...">
+                    <button id="export-csv" class="btn">Exportar a CSV</button>
+                </div>
+                <div class="table-container">
+                    <table id="interviews-table">
+                        <thead>
+                            <tr>
+                                <th>Candidato</th>
+                                <th>Evaluador</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Rol</th>
+                                <th>Puntaje Total</th>
+                                <th>Nivel Sugerido</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data will be loaded here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
+    <script src="sidebar.js"></script>
     <script src="backlog.js"></script>
 </body>
 </html>

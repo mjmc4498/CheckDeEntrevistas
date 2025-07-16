@@ -243,6 +243,71 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: var(--glass-bg);
+    padding: 20px;
+    border-right: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: left 0.3s;
+    z-index: 1000;
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+.sidebar-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.sidebar-toggle span {
+    width: 20px;
+    height: 2px;
+    background: #fff;
+    transition: all 0.3s;
+}
+
+.sidebar-toggle.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.sidebar-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.sidebar-toggle.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.main-content {
+    margin-left: 0;
+    transition: margin-left 0.3s;
+}
+
+.sidebar.open ~ .main-content {
+    margin-left: 250px;
+}
+
 .table-container {
     width: 100%;
     overflow-x: auto;
