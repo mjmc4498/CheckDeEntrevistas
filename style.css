@@ -142,6 +142,57 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 100%;
 }
 
+.skill-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.skill-group input {
+    flex: 1;
+}
+
+.btn-remove-skill {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    font-size: 1.5rem;
+    color: #ff6b6b;
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 4px 4px 8px var(--dark-shadow), -4px -4px 8px var(--light-shadow);
+    transition: all var(--transition-speed);
+}
+
+.btn-remove-skill:hover {
+    box-shadow: 2px 2px 4px var(--dark-shadow), -2px -2px 4px var(--light-shadow);
+}
+
+.btn-remove-skill:active {
+    box-shadow: inset 4px 4px 8px var(--dark-shadow), inset -4px -4px 8px var(--light-shadow);
+}
+
+.results-container {
+    margin-top: 40px;
+    padding: 30px;
+    background: var(--bg-color);
+    border-radius: 25px;
+    box-shadow: 10px 10px 20px var(--dark-shadow), -10px -10px 20px var(--light-shadow);
+    text-align: center;
+}
+
+.results-container h2 {
+    margin-top: 0;
+}
+
+.results-container p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
 input[type="time"]::-webkit-access-key {
     opacity: 0;
     cursor: pointer;
