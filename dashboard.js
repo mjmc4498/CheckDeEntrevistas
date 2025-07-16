@@ -8,9 +8,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const approvedCount = interviews.filter(i => i.decision.nextRound === 'Si').length;
     const approvalRate = totalInterviews > 0 ? ((approvedCount / totalInterviews) * 100).toFixed(1) : 0;
 
-    document.getElementById('total-interviews').textContent = totalInterviews;
-    document.getElementById('average-score').textContent = averageScore;
-    document.getElementById('approval-rate').textContent = `${approvalRate}%`;
+    const totalInterviewsEl = document.getElementById('total-interviews');
+    const averageScoreEl = document.getElementById('average-score');
+    const approvalRateEl = document.getElementById('approval-rate');
+
+    if(totalInterviewsEl) totalInterviewsEl.textContent = totalInterviews;
+    if(averageScoreEl) averageScoreEl.textContent = averageScore;
+    if(approvalRateEl) approvalRateEl.textContent = `${approvalRate}%`;
+
 
     // --- Gráfico de Distribución de Niveles ---
     const levelsCtx = document.getElementById('levels-chart');
@@ -58,4 +63,22 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    document.getElementById('export-pdf-button').addEventListener('click', () => {
+        const { jsPDF } = window.jspdf;
+        const dashboard = document.querySelector('.container');
+
+        html2canvas(dashboard, {
+            scale: 2, // Aumenta la resolución
+            useCORS: true
+        }).then(canvas => {
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+            pdf.save("dashboard_indicadores.pdf");
+        });
+    });
 });
