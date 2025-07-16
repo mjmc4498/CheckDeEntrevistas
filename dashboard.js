@@ -80,5 +80,52 @@ document.addEventListener('DOMContentLoaded', () => {
             pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
             pdf.save("dashboard_indicadores.pdf");
         });
+    }
+
+    // --- Gráfico de Entrevistas por Rol ---
+    const rolesCtx = document.getElementById('roles-chart');
+    if (rolesCtx) {
+        const roleCounts = interviews.reduce((acc, i) => {
+            acc[i.candidateRole] = (acc[i.candidateRole] || 0) + 1;
+            return acc;
+        }, {});
+        new Chart(rolesCtx, {
+            type: 'pie',
+            data: {
+                labels: Object.keys(roleCounts),
+                datasets: [{
+                    label: 'Entrevistas por Rol',
+                    data: Object.values(roleCounts),
+                    backgroundColor: ['#fd7e14', '#20c997', '#6610f2', '#ffc107'],
+                }]
+            }
+        });
+    }
+
+    // --- Gráfico de Distribución de Recomendaciones ---
+    const recommendationsCtx = document.getElementById('recommendations-chart');
+    if (recommendationsCtx) {
+        const recommendationCounts = interviews.reduce((acc, i) => {
+            acc[i.decision.recommendation] = (acc[i.decision.recommendation] || 0) + 1;
+            return acc;
+        }, {});
+        new Chart(recommendationsCtx, {
+            type: 'bar',
+            data: {
+                labels: Object.keys(recommendationCounts),
+                datasets: [{
+                    label: 'Distribución de Recomendaciones',
+                    data: Object.values(recommendationCounts),
+                    backgroundColor: '#dc3545',
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
     });
 });
