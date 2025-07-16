@@ -13,7 +13,8 @@
 
 .navbar .nav-link.active {
     font-weight: bold;
-    color: #fff !important;
+    color: #000 !important;
+    background-color: #f8f9fa;
 }
 
 .navbar {
