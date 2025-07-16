@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title %}Interview Backlog{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Backlog de Entrevistas</h1>
+    <div class="table-controls">
+        <input type="text" id="filter-input" placeholder="Filtrar entrevistas...">
+        <button id="export-csv">Exportar a CSV</button>
+    </div>
+    <table id="interviews-table">
+        <thead>
+            <tr>
+                <th data-sort="candidateName">Candidato</th>
+                <th data-sort="evaluatorName">Evaluador</th>
+                <th data-sort="interviewDate">Fecha</th>
+                <th data-sort="totalScore">Puntaje Total</th>
+                <th data-sort="suggestedLevel">Nivel Sugerido</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be loaded here by JavaScript -->
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/backlog.js') }}"></script>
+{% endblock %}
