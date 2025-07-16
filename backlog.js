@@ -71,6 +71,93 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    const importInput = document.getElementById('import-input');
+    const importButton = document.getElementById('import-button');
+
+    importButton.addEventListener('click', () => {
+        importInput.click();
+    });
+
+    importInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            Papa.parse(file, {
+                header: true,
+                skipEmptyLines: true,
+                complete: function(results) {
+                    processImportedData(results.data);
+                }
+            });
+        }
+    });
+
+    function processImportedData(data) {
+        const newInterviews = data.map(row => {
+            const totalScore = (
+                parseInt(row["Conocimiento Técnico"]) +
+                parseInt(row["Resolución de Problemas"]) +
+                parseInt(row["Comunicación"]) +
+                parseInt(row["Criterio Profesional"]) +
+                parseInt(row["Fit Cultural"]) +
+                parseInt(row["Motivación"])
+            );
+
+            let suggestedLevel = 'Junior';
+            if (totalScore >= 25) {
+                suggestedLevel = 'Senior';
+            } else if (totalScore >= 15) {
+                suggestedLevel = 'Semi Senior';
+            }
+
+            return {
+                id: Date.now() + Math.random(), // Ensure unique ID
+                candidateName: row["Nombre Candidato"],
+                evaluatorName: row["Nombre Evaluador"],
+                interviewDate: row["Fecha Entrevista"],
+                interviewTime: row["Hora Entrevista"],
+                candidateRole: row["Rol"],
+                totalScore: totalScore,
+                suggestedLevel: suggestedLevel,
+                dimensions: {
+                    conocimientoTecnico: row["Conocimiento Técnico"],
+                    resolucionProblemas: row["Resolución de Problemas"],
+                    comunicacion: row["Comunicación"],
+                    criterioProfesional: row["Criterio Profesional"],
+                    fitCultural: row["Fit Cultural"],
+                    motivacion: row["Motivación"],
+                },
+                technicalTest: {
+                    applied: row["Prueba Técnica Aplicada"],
+                    result: row["Resultado Prueba"],
+                    tools: row["Herramientas"],
+                },
+                feedback: {
+                    strongPoints: row["Puntos Fuertes"],
+                    improvementOpportunities: row["Oportunidades de Mejora"],
+                    additionalComments: row["Comentarios Adicionales"],
+                },
+                decision: {
+                    nextRound: row["Pasa a Siguiente Ronda"],
+                    recommendation: row["Recomendación"],
+                    detectedLevel: row["Nivel Detectado"],
+                    roleAlignment: row["Alineamiento con Rol"],
+                },
+                tracking: {
+                    processStatus: row["Estado del Proceso"],
+                    cvLink: row["Link CV"],
+                    recordingLink: row["Link Grabación"],
+                    registeredBy: row["Usuario que Registró"],
+                    registrationDate: new Date().toISOString(),
+                }
+            };
+        });
+
+        interviews = [...interviews, ...newInterviews];
+        localStorage.setItem('interviews', JSON.stringify(interviews));
+        renderTable(interviews);
+        alert(`${newInterviews.length} registros importados exitosamente!`);
+    }
+
     document.getElementById('export-button').addEventListener('click', () => {
         let csvContent = "data:text/csv;charset=utf-8,";
         const headers = [

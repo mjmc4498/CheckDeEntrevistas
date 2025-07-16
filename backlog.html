@@ -36,9 +36,14 @@
                 <h3>Registros de Entrevistas</h3>
             </div>
             <div class="card-body">
-                <div class="d-flex justify-content-between mb-3">
-                    <input type="text" class="form-control w-50" id="searchInput" placeholder="Buscar por candidato, rol o evaluador...">
-                    <button class="btn btn-success" id="export-button">Exportar a CSV</button>
+                <div class="d-flex justify-content-between mb-3 flex-wrap gap-2">
+                    <input type="text" class="form-control" style="max-width: 400px;" id="searchInput" placeholder="Buscar...">
+                    <div>
+                        <button class="btn btn-info" id="import-instructions-button" data-bs-toggle="modal" data-bs-target="#instructionsModal">Instrucciones</button>
+                        <input type="file" id="import-input" class="d-none" accept=".csv">
+                        <button class="btn btn-secondary" id="import-button">Importar CSV</button>
+                        <button class="btn btn-success" id="export-button">Exportar a CSV</button>
+                    </div>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped table-hover">
@@ -78,7 +83,55 @@
         </div>
     </div>
 
+    <!-- Modal para Instrucciones de Importación -->
+    <div class="modal fade" id="instructionsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Instrucciones para Importar CSV</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Para importar los registros correctamente, su archivo CSV debe tener las siguientes columnas en el orden exacto:</p>
+                    <ol>
+                        <li>ID (dejar en blanco, se generará automáticamente)</li>
+                        <li>Nombre Candidato</li>
+                        <li>Nombre Evaluador</li>
+                        <li>Fecha Entrevista (YYYY-MM-DD)</li>
+                        <li>Hora Entrevista (HH:MM)</li>
+                        <li>Rol</li>
+                        <li>Puntaje Total (dejar en blanco, se calculará)</li>
+                        <li>Nivel Sugerido (dejar en blanco, se calculará)</li>
+                        <li>Conocimiento Técnico (1-5)</li>
+                        <li>Resolución de Problemas (1-5)</li>
+                        <li>Comunicación (1-5)</li>
+                        <li>Criterio Profesional (1-5)</li>
+                        <li>Fit Cultural (1-5)</li>
+                        <li>Motivación (1-5)</li>
+                        <li>Prueba Técnica Aplicada (Si/No)</li>
+                        <li>Resultado Prueba</li>
+                        <li>Herramientas</li>
+                        <li>Puntos Fuertes</li>
+                        <li>Oportunidades de Mejora</li>
+                        <li>Comentarios Adicionales</li>
+                        <li>Pasa a Siguiente Ronda (Si/No)</li>
+                        <li>Recomendación (No/Tal vez/Sí/Sí con urgencia)</li>
+                        <li>Nivel Detectado (Junior/Semi Senior/Senior)</li>
+                        <li>Alineamiento con Rol (Bajo/Medio/Alto)</li>
+                        <li>Estado del Proceso (Pendiente/En evaluación/Cerrado)</li>
+                        <li>Link CV</li>
+                        <li>Link Grabación</li>
+                        <li>Usuario que Registró</li>
+                        <li>Fecha de Registro (dejar en blanco, se generará automáticamente)</li>
+                    </ol>
+                    <p><strong>Nota:</strong> La primera fila de su archivo debe ser la cabecera con estos nombres de columna.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
     <script src="backlog.js"></script>
 </body>
 </html>
