@@ -1,16 +1,28 @@
 document.addEventListener('DOMContentLoaded', function() {
     const themeSwitch = document.getElementById('checkbox');
     if (themeSwitch) {
+        // Function to set the theme
+        const setTheme = (theme) => {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            themeSwitch.checked = theme === 'dark';
+        };
+
+        // Check for saved theme in local storage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            setTheme(savedTheme);
+        }
+
         themeSwitch.addEventListener('change', function(event) {
             if (event.target.checked) {
-                document.documentElement.setAttribute('data-theme', 'dark');
+                setTheme('dark');
             } else {
-                document.documentElement.removeAttribute('data-theme');
+                setTheme('light');
             }
         });
     }
 
-    // The rest of the code from the original main.js for the form
     const addSkillButton = document.getElementById('add-skill');
     const technicalSkillsDiv = document.getElementById('technical-skills');
     const interviewForm = document.getElementById('interview-form');
@@ -72,22 +84,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 additionalNotes: document.getElementById('additional-notes').value
             };
 
-            fetch('/interview', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(interviewData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert(data.message);
-                interviewForm.reset();
-                technicalSkillsDiv.innerHTML = '';
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+            let interviews = JSON.parse(localStorage.getItem('interviews')) || [];
+            interviews.push(interviewData);
+            localStorage.setItem('interviews', JSON.stringify(interviews));
+
+            alert('Entrevista guardada exitosamente!');
+            interviewForm.reset();
+            technicalSkillsDiv.innerHTML = '';
         });
     }
 });

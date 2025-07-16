@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const filterInput = document.getElementById('filter-input');
     const exportButton = document.getElementById('export-csv');
     const headers = document.querySelectorAll('#interviews-table th');
-    let interviews = [];
+    let interviews = JSON.parse(localStorage.getItem('interviews')) || [];
     let sortColumn = '';
     let sortDirection = 'asc';
 
@@ -53,22 +53,21 @@ document.addEventListener('DOMContentLoaded', function() {
         link.click();
     }
 
-    fetch('/api/interviews')
-        .then(response => response.json())
-        .then(data => {
-            interviews = data;
-            renderTable(interviews);
+    renderTable(interviews);
+
+    if (filterInput) {
+        filterInput.addEventListener('input', (e) => {
+            const query = e.target.value;
+            const filtered = filterData(interviews, query);
+            renderTable(filtered);
         });
+    }
 
-    filterInput.addEventListener('input', (e) => {
-        const query = e.target.value;
-        const filtered = filterData(interviews, query);
-        renderTable(filtered);
-    });
-
-    exportButton.addEventListener('click', () => {
-        exportToCsv(interviews);
-    });
+    if (exportButton) {
+        exportButton.addEventListener('click', () => {
+            exportToCsv(interviews);
+        });
+    }
 
     headers.forEach(header => {
         header.addEventListener('click', () => {
