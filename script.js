@@ -1,5 +1,49 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('interview-form');
+    const urlParams = new URLSearchParams(window.location.search);
+    const interviewId = urlParams.get('id');
+    let interviews = JSON.parse(localStorage.getItem('interviews')) || [];
+
+    if (interviewId) {
+        const interview = interviews.find(i => i.id == interviewId);
+        if (interview) {
+            // Pre-fill form
+            document.getElementById('candidateName').value = interview.candidateName;
+            document.getElementById('evaluatorName').value = interview.evaluatorName;
+            document.getElementById('interviewDate').value = interview.interviewDate;
+            document.getElementById('interviewTime').value = interview.interviewTime;
+            document.getElementById('candidateRole').value = interview.candidateRole;
+
+            document.getElementById('conocimientoTecnico').value = interview.dimensions.conocimientoTecnico;
+            document.getElementById('resolucionProblemas').value = interview.dimensions.resolucionProblemas;
+            document.getElementById('comunicacion').value = interview.dimensions.comunicacion;
+            document.getElementById('criterioProfesional').value = interview.dimensions.criterioProfesional;
+            document.getElementById('fitCultural').value = interview.dimensions.fitCultural;
+            document.getElementById('motivacion').value = interview.dimensions.motivacion;
+
+            if(interview.technicalTest.applied === 'Si') {
+                document.getElementById('pruebaTecnicaSi').checked = true;
+            } else {
+                document.getElementById('pruebaTecnicaNo').checked = true;
+            }
+            document.getElementById('resultadoPrueba').value = interview.technicalTest.result;
+            document.getElementById('herramientas').value = interview.technicalTest.tools;
+
+            document.getElementById('puntosFuertes').value = interview.feedback.strongPoints;
+            document.getElementById('oportunidadesMejora').value = interview.feedback.improvementOpportunities;
+            document.getElementById('comentariosAdicionales').value = interview.feedback.additionalComments;
+
+            document.getElementById('pasaRonda').value = interview.decision.nextRound;
+            document.getElementById('recomendacion').value = interview.decision.recommendation;
+            document.getElementById('nivelDetectado').value = interview.decision.detectedLevel;
+            document.getElementById('alineamientoRol').value = interview.decision.roleAlignment;
+
+            document.getElementById('estadoProceso').value = interview.tracking.processStatus;
+            document.getElementById('linkCV').value = interview.tracking.cvLink;
+            document.getElementById('linkGrabacion').value = interview.tracking.recordingLink;
+            document.getElementById('usuarioRegistro').value = interview.tracking.registeredBy;
+        }
+    }
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -24,8 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const interviewData = {
-            id: Date.now(),
-            // Datos Generales
+            id: interviewId ? parseInt(interviewId) : Date.now(),
             candidateName: document.getElementById('candidateName').value,
             evaluatorName: document.getElementById('evaluatorName').value,
             interviewDate: document.getElementById('interviewDate').value,
@@ -33,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
             candidateRole: document.getElementById('candidateRole').value,
             totalScore: totalScore,
             suggestedLevel: suggestedLevel,
-            // Dimensiones de Evaluación
             dimensions: {
                 conocimientoTecnico: document.getElementById('conocimientoTecnico').value,
                 resolucionProblemas: document.getElementById('resolucionProblemas').value,
@@ -42,42 +84,45 @@ document.addEventListener('DOMContentLoaded', () => {
                 fitCultural: document.getElementById('fitCultural').value,
                 motivacion: document.getElementById('motivacion').value,
             },
-            // Evaluación Técnica
             technicalTest: {
                 applied: document.querySelector('input[name="pruebaTecnica"]:checked').value,
                 result: document.getElementById('resultadoPrueba').value,
                 tools: document.getElementById('herramientas').value,
             },
-            // Feedback del Entrevistador
             feedback: {
                 strongPoints: document.getElementById('puntosFuertes').value,
                 improvementOpportunities: document.getElementById('oportunidadesMejora').value,
                 additionalComments: document.getElementById('comentariosAdicionales').value,
             },
-            // Decisión y Avance
             decision: {
                 nextRound: document.getElementById('pasaRonda').value,
                 recommendation: document.getElementById('recomendacion').value,
                 detectedLevel: document.getElementById('nivelDetectado').value,
                 roleAlignment: document.getElementById('alineamientoRol').value,
             },
-            // Trazabilidad del Registro
             tracking: {
                 processStatus: document.getElementById('estadoProceso').value,
                 cvLink: document.getElementById('linkCV').value,
                 recordingLink: document.getElementById('linkGrabacion').value,
                 registeredBy: document.getElementById('usuarioRegistro').value,
-                registrationDate: new Date().toISOString(),
+                registrationDate: interviewId ? interviews.find(i=>i.id==interviewId).tracking.registrationDate : new Date().toISOString(),
             }
         };
 
-        // Guardar en localStorage
-        let interviews = JSON.parse(localStorage.getItem('interviews')) || [];
-        interviews.push(interviewData);
+        if (interviewId) {
+            // Update existing record
+            const index = interviews.findIndex(i => i.id == interviewId);
+            interviews[index] = interviewData;
+        } else {
+            // Add new record
+            interviews.push(interviewData);
+        }
+
         localStorage.setItem('interviews', JSON.stringify(interviews));
 
         // Resetear formulario y mostrar alerta
         form.reset();
-        alert('Registro de entrevista guardado exitosamente!');
+        alert('Registro guardado exitosamente!');
+        window.location.href = 'backlog.html';
     });
 });
