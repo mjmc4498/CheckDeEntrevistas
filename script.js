@@ -87,17 +87,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to display results
     const displayResults = (data) => {
-        let resultsContainer = document.querySelector('.results-container');
-        if (!resultsContainer) {
-            resultsContainer = document.createElement('div');
-            resultsContainer.classList.add('results-container');
-            form.insertAdjacentElement('afterend', resultsContainer);
-        }
-
+        const resultsContainer = document.querySelector('.results-container');
         resultsContainer.innerHTML = `
             <h2>Resultados de la Evaluación</h2>
             <p><strong>Puntaje Total:</strong> ${data.totalScore}</p>
             <p><strong>Nivel Sugerido:</strong> ${data.suggestedLevel}</p>
         `;
+        resultsContainer.style.display = 'block';
     };
 });

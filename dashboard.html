@@ -1,41 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="static/css/style.css">
+    <title>Indicadores de Entrevistas - Glassmorphism UI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div id="root">
-        <div class="sidebar">
-            <a href="index.html">Formulario</a>
-            <a href="backlog.html">Backlog</a>
-            <a href="dashboard.html">Dashboard</a>
-            <div class="theme-switch-wrapper">
-                <label class="theme-switch" for="checkbox">
-                    <input type="checkbox" id="checkbox" />
-                    <div class="slider round"></div>
-                </label>
-                <em>Modo Oscuro</em>
-            </div>
-        </div>
-
-        <div class="content">
-            <div class="container">
-                <h1>Dashboard de Visualización</h1>
-                <div class="chart-container">
+    <div class="background-shapes"></div>
+    <nav class="navbar">
+        <a href="index.html" class="nav-link">Formulario</a>
+        <a href="backlog.html" class="nav-link">Registros</a>
+        <a href="dashboard.html" class="nav-link active">Indicadores</a>
+    </nav>
+    <div class="container">
+        <div class="main-card">
+            <h1>Indicadores de Entrevistas</h1>
+            <div class="charts-container">
+                <div class="chart-card">
                     <h2>Distribución de Niveles</h2>
                     <canvas id="level-distribution-chart"></canvas>
                 </div>
-                <div class="chart-container">
-                    <h2>Perfil de Competencias del Último Candidato</h2>
+                <div class="chart-card">
+                    <h2>Perfil de Competencias</h2>
                     <canvas id="radar-chart"></canvas>
                 </div>
             </div>
         </div>
     </div>
-    <script type="module" src="static/js/app.js"></script>
+    <script src="dashboard.js"></script>
 </body>
 </html>
