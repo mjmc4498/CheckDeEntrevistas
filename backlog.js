@@ -71,5 +71,61 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    document.getElementById('export-button').addEventListener('click', () => {
+        let csvContent = "data:text/csv;charset=utf-8,";
+        const headers = [
+            "ID", "Nombre Candidato", "Nombre Evaluador", "Fecha Entrevista", "Hora Entrevista", "Rol", "Puntaje Total", "Nivel Sugerido",
+            "Conocimiento Técnico", "Resolución de Problemas", "Comunicación", "Criterio Profesional", "Fit Cultural", "Motivación",
+            "Prueba Técnica Aplicada", "Resultado Prueba", "Herramientas",
+            "Puntos Fuertes", "Oportunidades de Mejora", "Comentarios Adicionales",
+            "Pasa a Siguiente Ronda", "Recomendación", "Nivel Detectado", "Alineamiento con Rol",
+            "Estado del Proceso", "Link CV", "Link Grabación", "Usuario que Registró", "Fecha de Registro"
+        ];
+        csvContent += headers.join(",") + "\r\n";
+
+        interviews.forEach(interview => {
+            const row = [
+                interview.id,
+                `"${interview.candidateName}"`,
+                `"${interview.evaluatorName}"`,
+                interview.interviewDate,
+                interview.interviewTime,
+                `"${interview.candidateRole}"`,
+                interview.totalScore,
+                `"${interview.suggestedLevel}"`,
+                interview.dimensions.conocimientoTecnico,
+                interview.dimensions.resolucionProblemas,
+                interview.dimensions.comunicacion,
+                interview.dimensions.criterioProfesional,
+                interview.dimensions.fitCultural,
+                interview.dimensions.motivacion,
+                `"${interview.technicalTest.applied}"`,
+                `"${interview.technicalTest.result.replace(/"/g, '""')}"`,
+                `"${interview.technicalTest.tools}"`,
+                `"${interview.feedback.strongPoints.replace(/"/g, '""')}"`,
+                `"${interview.feedback.improvementOpportunities.replace(/"/g, '""')}"`,
+                `"${interview.feedback.additionalComments.replace(/"/g, '""')}"`,
+                `"${interview.decision.nextRound}"`,
+                `"${interview.decision.recommendation}"`,
+                `"${interview.decision.detectedLevel}"`,
+                `"${interview.decision.roleAlignment}"`,
+                `"${interview.tracking.processStatus}"`,
+                `"${interview.tracking.cvLink}"`,
+                `"${interview.tracking.recordingLink}"`,
+                `"${interview.tracking.registeredBy}"`,
+                interview.tracking.registrationDate
+            ];
+            csvContent += row.join(",") + "\r\n";
+        });
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "registros_entrevistas.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+
     renderTable(interviews);
 });
