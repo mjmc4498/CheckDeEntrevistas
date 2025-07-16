@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         localStorage.setItem('interviews', JSON.stringify(interviews));
 
-        // Resetear formulario y mostrar alerta
+        // Resetear formulario y redirigir
         form.reset();
         alert('Registro guardado exitosamente!');
         window.location.href = 'backlog.html';
