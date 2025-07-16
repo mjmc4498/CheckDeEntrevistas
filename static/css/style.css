@@ -1,162 +1,202 @@
 :root {
-    --primary-color: #337ab7;
-    --secondary-color: #f4f4f4;
-    --font-color: #333;
-    --bg-color: #fff;
-    --heading-color: #333;
-    --border-color: #ddd;
+    --bg-color: #e0e5ec;
+    --primary-color: #4a76a8;
+    --font-color: #555;
+    --light-shadow: #ffffff;
+    --dark-shadow: #a3b1c6;
+    --border-radius: 12px;
 }
 
 [data-theme="dark"] {
-    --primary-color: #bb86fc;
-    --secondary-color: #333;
+    --bg-color: #2c2f33;
+    --primary-color: #7289da;
     --font-color: #e1e1e1;
-    --bg-color: #121212;
-    --heading-color: #e1e1e1;
-    --border-color: #444;
+    --light-shadow: #3a3e42;
+    --dark-shadow: #1e2124;
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     background-color: var(--bg-color);
     color: var(--font-color);
     line-height: 1.6;
     margin: 0;
-    padding-left: 200px;
+    padding-left: 220px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .sidebar {
     height: 100%;
-    width: 200px;
+    width: 220px;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: var(--secondary-color);
+    background-color: var(--bg-color);
     padding-top: 20px;
-    border-right: 1px solid var(--border-color);
+    box-shadow: 5px 0px 15px var(--dark-shadow), -5px 0px 15px var(--light-shadow);
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .sidebar a {
-    padding: 10px 15px;
+    padding: 15px 20px;
     text-decoration: none;
     font-size: 18px;
     color: var(--font-color);
     display: block;
+    margin: 10px 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 5px 5px 10px var(--dark-shadow), -5px -5px 10px var(--light-shadow);
+    transition: all 0.3s;
 }
 
 .sidebar a:hover {
-    background-color: var(--primary-color);
-    color: var(--bg-color);
+    box-shadow: inset 5px 5px 10px var(--dark-shadow), inset -5px -5px 10px var(--light-shadow);
+    color: var(--primary-color);
 }
 
 .content {
-    padding: 20px;
+    padding: 30px;
 }
 
 .container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
 h1, h2 {
-    color: var(--heading-color);
+    color: var(--font-color);
     text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px var(--light-shadow);
 }
 
 form {
     background: var(--bg-color);
-    padding: 20px;
-    border-radius: 5px;
-    border: 1px solid var(--border-color);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: 5px 5px 10px var(--dark-shadow), -5px -5px 10px var(--light-shadow);
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    font-weight: 600;
 }
 
-.form-group input[type="text"],
-.form-group input[type="date"],
-.form-group input[type="number"],
+.form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 8px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    background-color: var(--secondary-color);
+    padding: 12px;
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--bg-color);
+    box-shadow: inset 4px 4px 8px var(--dark-shadow), inset -4px -4px 8px var(--light-shadow);
     color: var(--font-color);
+    transition: all 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    box-shadow: 5px 5px 10px var(--dark-shadow), -5px -5px 10px var(--light-shadow);
 }
 
 .skill-group {
-    display: flex;
+    display: grid;
+    grid-template-columns: 2fr 1fr auto;
     align-items: center;
-    gap: 10px;
-}
-
-.skill-group input[type="text"] {
-    flex: 2;
-}
-
-.skill-group input[type="number"] {
-    flex: 1;
+    gap: 15px;
 }
 
 button {
     display: inline-block;
-    background: var(--primary-color);
-    color: #fff;
-    padding: 10px 15px;
+    background: var(--bg-color);
+    color: var(--primary-color);
+    padding: 12px 20px;
     border: none;
-    border-radius: 4px;
+    border-radius: var(--border-radius);
     cursor: pointer;
+    font-weight: 600;
+    box-shadow: 5px 5px 10px var(--dark-shadow), -5px -5px 10px var(--light-shadow);
+    transition: all 0.3s;
 }
 
 button:hover {
-    opacity: 0.9;
+    color: var(--font-color);
+    box-shadow: inset 5px 5px 10px var(--dark-shadow), inset -5px -5px 10px var(--light-shadow);
 }
 
 .remove-skill {
-    background: #d9534f;
-}
-
-.remove-skill:hover {
-    background: #c9302c;
+    color: #e53935;
 }
 
 table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0 10px;
     margin-top: 20px;
 }
 
 th, td {
-    padding: 12px;
-    border: 1px solid var(--border-color);
+    padding: 15px;
     text-align: left;
 }
 
 th {
-    background-color: var(--secondary-color);
+    color: var(--font-color);
+    font-weight: 600;
     cursor: pointer;
 }
 
+td {
+    background: var(--bg-color);
+    box-shadow: 5px 5px 10px var(--dark-shadow), -5px -5px 10px var(--light-shadow);
+}
+
+td:first-child {
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+}
+
+td:last-child {
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+}
+
 .table-controls {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.table-controls input {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--bg-color);
+    box-shadow: inset 4px 4px 8px var(--dark-shadow), inset -4px -4px 8px var(--light-shadow);
+    color: var(--font-color);
 }
 
 .chart-container {
     margin-top: 40px;
+    padding: 20px;
+    background: var(--bg-color);
+    border-radius: var(--border-radius);
+    box-shadow: 5px 5px 10px var(--dark-shadow), -5px -5px 10px var(--light-shadow);
 }
 
 .theme-switch-wrapper {
     display: flex;
     align-items: center;
-    padding: 10px 15px;
+    padding: 10px 20px;
+    margin-top: 20px;
 }
 
 .theme-switch {
@@ -171,7 +211,8 @@ th {
 }
 
 .slider {
-    background-color: #ccc;
+    background-color: var(--bg-color);
+    box-shadow: inset 4px 4px 8px var(--dark-shadow), inset -4px -4px 8px var(--light-shadow);
     bottom: 0;
     cursor: pointer;
     left: 0;
@@ -182,7 +223,8 @@ th {
 }
 
 .slider:before {
-    background-color: #fff;
+    background-color: var(--bg-color);
+    box-shadow: 2px 2px 4px var(--dark-shadow), -2px -2px 4px var(--light-shadow);
     bottom: 4px;
     content: "";
     height: 26px;

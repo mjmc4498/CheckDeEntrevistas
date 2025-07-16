@@ -7,43 +7,46 @@
     <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
-    <div class="sidebar">
-        <a href="index.html">Formulario</a>
-        <a href="backlog.html">Backlog</a>
-        <a href="dashboard.html">Dashboard</a>
-        <div class="theme-switch-wrapper">
-            <label class="theme-switch" for="checkbox">
-                <input type="checkbox" id="checkbox" />
-                <div class="slider round"></div>
-            </label>
-            <em>Modo Oscuro</em>
-        </div>
-    </div>
-
-    <div class="content">
-        <div class="container">
-            <h1>Backlog de Entrevistas</h1>
-            <div class="table-controls">
-                <input type="text" id="filter-input" placeholder="Filtrar entrevistas...">
-                <button id="export-csv">Exportar a CSV</button>
+    <div id="root">
+        <div class="sidebar">
+            <a href="index.html">Formulario</a>
+            <a href="backlog.html">Backlog</a>
+            <a href="dashboard.html">Dashboard</a>
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider round"></div>
+                </label>
+                <em>Modo Oscuro</em>
             </div>
-            <table id="interviews-table">
-                <thead>
-                    <tr>
-                        <th data-sort="candidateName">Candidato</th>
-                        <th data-sort="evaluatorName">Evaluador</th>
-                        <th data-sort="interviewDate">Fecha</th>
-                        <th data-sort="totalScore">Puntaje Total</th>
-                        <th data-sort="suggestedLevel">Nivel Sugerido</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Data will be loaded here by JavaScript -->
-                </tbody>
-            </table>
+        </div>
+
+        <div class="content">
+            <div class="container">
+                <h1>Backlog de Entrevistas</h1>
+                <div class="table-controls">
+                    <input type="text" id="filter-input" placeholder="Filtrar entrevistas...">
+                    <button id="export-csv">Exportar a CSV</button>
+                </div>
+                <table id="interviews-table">
+                    <thead>
+                        <tr>
+                            <th data-sort="candidateName">Candidato</th>
+                            <th data-sort="evaluatorName">Evaluador</th>
+                            <th data-sort="interviewDate">Fecha</th>
+                            <th data-sort="interviewTime">Hora</th>
+                            <th data-sort="candidateRole">Rol</th>
+                            <th data-sort="totalScore">Puntaje Total</th>
+                            <th data-sort="suggestedLevel">Nivel Sugerido</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data will be loaded here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-
-    <script src="static/js/backlog.js"></script>
+    <script type="module" src="static/js/app.js"></script>
 </body>
 </html>

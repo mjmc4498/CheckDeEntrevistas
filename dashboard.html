@@ -8,33 +8,34 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div class="sidebar">
-        <a href="index.html">Formulario</a>
-        <a href="backlog.html">Backlog</a>
-        <a href="dashboard.html">Dashboard</a>
-        <div class="theme-switch-wrapper">
-            <label class="theme-switch" for="checkbox">
-                <input type="checkbox" id="checkbox" />
-                <div class="slider round"></div>
-            </label>
-            <em>Modo Oscuro</em>
-        </div>
-    </div>
-
-    <div class="content">
-        <div class="container">
-            <h1>Dashboard de Visualización</h1>
-            <div class="chart-container">
-                <h2>Distribución de Niveles</h2>
-                <canvas id="level-distribution-chart"></canvas>
-            </div>
-            <div class="chart-container">
-                <h2>Perfil de Competencias del Último Candidato</h2>
-                <canvas id="radar-chart"></canvas>
+    <div id="root">
+        <div class="sidebar">
+            <a href="index.html">Formulario</a>
+            <a href="backlog.html">Backlog</a>
+            <a href="dashboard.html">Dashboard</a>
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider round"></div>
+                </label>
+                <em>Modo Oscuro</em>
             </div>
         </div>
-    </div>
 
-    <script src="static/js/dashboard.js"></script>
+        <div class="content">
+            <div class="container">
+                <h1>Dashboard de Visualización</h1>
+                <div class="chart-container">
+                    <h2>Distribución de Niveles</h2>
+                    <canvas id="level-distribution-chart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h2>Perfil de Competencias del Último Candidato</h2>
+                    <canvas id="radar-chart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="static/js/app.js"></script>
 </body>
 </html>
