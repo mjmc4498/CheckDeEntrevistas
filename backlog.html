@@ -3,53 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registros de Entrevistas - Glassmorphism UI</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Registros de Entrevistas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <div class="background-shapes"></div>
-    <button class="sidebar-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-    <nav class="sidebar">
-        <a href="index.html" class="nav-link">Formulario</a>
-        <a href="backlog.html" class="nav-link active">Registros</a>
-        <a href="dashboard.html" class="nav-link">Indicadores</a>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Check de Entrevistas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Formulario</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="backlog.html">Registros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Indicadores</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
-    <div class="main-content">
-        <div class="container">
-            <div class="main-card">
-                <h1>Registros de Entrevistas</h1>
-                <div class="table-controls">
-                    <input type="text" id="search-input" placeholder="Buscar en registros...">
-                    <button id="export-csv" class="btn">Exportar a CSV</button>
+
+    <div class="container mt-4">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h3>Registros de Entrevistas</h3>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Buscar por candidato, rol o evaluador...">
                 </div>
-                <div class="table-container">
-                    <table id="interviews-table">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>Candidato</th>
-                                <th>Evaluador</th>
-                                <th>Fecha</th>
-                                <th>Hora</th>
                                 <th>Rol</th>
-                                <th>Puntaje Técnico</th>
-                                <th>Puntaje Actitudinal</th>
+                                <th>Fecha</th>
+                                <th>Evaluador</th>
+                                <th>Puntaje Total</th>
                                 <th>Nivel Sugerido</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <!-- Data will be loaded here by JavaScript -->
+                        <tbody id="interviews-table-body">
+                            <!-- Los datos se cargarán aquí -->
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-    <script src="sidebar.js"></script>
+
+    <!-- Modal para ver detalles -->
+    <div class="modal fade" id="detailsModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detalles de la Entrevista</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="modal-body-content">
+                    <!-- El contenido del modal se cargará aquí -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="backlog.js"></script>
 </body>
 </html>

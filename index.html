@@ -3,179 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evaluación de Entrevista Técnica - Glassmorphism UI</title>
+    <title>Registro de Entrevistas Ténicas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
-<body>
-    <div class="background-shapes"></div>
-    <button class="sidebar-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-    <nav class="sidebar">
-        <a href="index.html" class="nav-link active">Formulario</a>
-        <a href="backlog.html" class="nav-link">Registros</a>
-        <a href="dashboard.html" class="nav-link">Indicadores</a>
-    </nav>
-    <div class="main-content">
-        <div class="container">
-            <div class="main-card">
-                <h1>Evaluación de Entrevista Técnica</h1>
-                <form class="glassmorphism-form">
-                    <div class="form-section">
-                        <div class="form-column">
-                            <div class="form-group">
-                                <label for="candidate-name">Nombre del Candidato</label>
-                                <input type="text" id="candidate-name" placeholder="Ingrese el nombre...">
-                            </div>
-                            <div class="form-group">
-                                <label for="evaluator-name">Nombre del Evaluador</label>
-                                <input type="text" id="evaluator-name" placeholder="Ingrese su nombre...">
-                            </div>
-                             <div class="form-group">
-                                <label for="candidate-role">Rol del Candidato</label>
-                                <input type="text" id="candidate-role" placeholder="Ej. Data Engineer, Data Analyst...">
-                            </div>
-                        </div>
-                        <div class="form-column">
-                            <div class="form-group">
-                                <label for="interview-date">Fecha de Entrevista</label>
-                                <input type="date" id="interview-date">
-                            </div>
-                            <div class="form-group">
-                                <label for="interview-time">Hora de Entrevista</label>
-                                <input type="time" id="interview-time">
-                            </div>
-                        </div>
-                    </div>
+<body class="bg-light">
 
-                    <div class="form-section">
-                        <h2>Competencias Técnicas</h2>
-                        <div class="skills-section">
-                            <!-- Las competencias se agregarán aquí dinámicamente -->
-                        </div>
-                        <button type="button" class="btn btn-add-skill">Agregar Competencia</button>
-                    </div>
-
-                    <div class="form-section">
-                        <h2>Indicadores Generales</h2>
-                        <div class="indicators-grid">
-                            <!-- Conocimiento Técnico -->
-                            <div class="indicator-card">
-                                <h3>Conocimiento Técnico</h3>
-                                <div class="rating-group">
-                                    <label>Nivel de dominio:</label>
-                                    <input type="range" min="1" max="5" value="3" id="conocimiento-dominio">
-                                </div>
-                                <div class="rating-group">
-                                    <label>Precisión en respuestas:</label>
-                                    <input type="range" min="1" max="5" value="3" id="conocimiento-precision">
-                                </div>
-                                <div class="rating-group">
-                                    <label>Aplicación práctica:</label>
-                                    <input type="range" min="1" max="5" value="3" id="conocimiento-aplicacion">
-                                </div>
-                            </div>
-                            <!-- Habilidades Técnicas Aplicadas -->
-                            <div class="indicator-card">
-                                <h3>Habilidades Técnicas Aplicadas</h3>
-                                <div class="rating-group">
-                                    <label>Resolución de problemas:</label>
-                                    <input type="range" min="1" max="5" value="3" id="habilidades-resolucion">
-                                </div>
-                                <div class="rating-group">
-                                    <label>Eficiencia en pruebas:</label>
-                                    <input type="range" min="1" max="5" value="3" id="habilidades-eficiencia">
-                                </div>
-                                <div class="rating-group">
-                                    <label>Detección de errores:</label>
-                                    <input type="range" min="1" max="5" value="3" id="habilidades-errores">
-                                </div>
-                            </div>
-                            <!-- Comunicación -->
-                            <div class="indicator-card">
-                                <h3>Comunicación</h3>
-                                <div class="rating-group">
-                                    <label>Claridad y estructura:</label>
-                                    <input type="range" min="1" max="5" value="3" id="comunicacion-claridad">
-                                </div>
-                                <div class="rating-group">
-                                    <label>Explicación de temas complejos:</label>
-                                    <input type="range" min="1" max="5" value="3" id="comunicacion-complejos">
-                                </div>
-                                <div class="rating-group">
-                                    <label>Escucha activa:</label>
-                                    <input type="range" min="1" max="5" value="3" id="comunicacion-escucha">
-                                </div>
-                            </div>
-                            <!-- Criterio y Toma de Decisiones -->
-                            <div class="indicator-card">
-                                <h3>Criterio y Toma de Decisiones</h3>
-                                <div class="rating-group">
-                                    <label>Lógica en argumentación:</label>
-                                    <input type="range" min="1" max="5" value="3" id="criterio-logica">
-                                </div>
-                                <div class="rating-group">
-                                    <label>Evaluación de escenarios:</label>
-                                    <input type="range" min="1" max="5" value="3" id="criterio-escenarios">
-                                </div>
-                                <div class="rating-group">
-                                    <label>Enfoque en soluciones:</label>
-                                    <input type="range" min="1" max="5" value="3" id="criterio-soluciones">
-                                </div>
-                            </div>
-                            <!-- Fit Cultural y de Equipo -->
-                            <div class="indicator-card">
-                                <h3>Fit Cultural y de Equipo</h3>
-                                <div class="rating-group">
-                                    <label>Alineamiento con valores:</label>
-                                    <input type="range" min="1" max="5" value="3" id="fit-valores">
-                                </div>
-                                <div class="rating-group">
-                                    <label>Estilo de trabajo:</label>
-                                    <input type="range" min="1" max="5" value="3" id="fit-trabajo">
-                                </div>
-                                <div class="rating-group">
-                                    <label>Adaptabilidad:</label>
-                                    <input type="range" min="1" max="5" value="3" id="fit-adaptabilidad">
-                                </div>
-                            </div>
-                            <!-- Motivación y Potencial -->
-                            <div class="indicator-card">
-                                <h3>Motivación y Potencial</h3>
-                                <div class="rating-group">
-                                    <label>Interés por el puesto:</label>
-                                    <input type="range" min="1" max="5" value="3" id="motivacion-interes">
-                                </div>
-                                <div class="rating-group">
-                                    <label>Proyección de crecimiento:</label>
-                                    <input type="range" min="1" max="5" value="3" id="motivacion-proyeccion">
-                                </div>
-                                <div class="rating-group">
-                                    <label>Iniciativa:</label>
-                                    <input type="range" min="1" max="5" value="3" id="motivacion-iniciativa">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-section">
-                        <h2>Evaluación Global</h2>
-                        <div class="form-group">
-                            <label for="additional-notes">Recomendación final del entrevistador</label>
-                            <textarea id="additional-notes" rows="4" placeholder="Comentarios..."></textarea>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-submit">Guardar y Evaluar</button>
-                </form>
-                <div class="results-container"></div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Check de Entrevistas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Formulario</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="backlog.html">Registros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Indicadores</a>
+                    </li>
+                </ul>
             </div>
         </div>
+    </nav>
+
+    <div class="container mt-4">
+        <form id="interview-form" class="p-4 bg-white rounded shadow-sm">
+
+            <!-- Datos Generales -->
+            <div class="form-section">
+                <h4>🧾 Datos Generales</h4>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="candidateName" class="form-label">Nombre del Candidato</label>
+                        <input type="text" class="form-control" id="candidateName" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="evaluatorName" class="form-label">Nombre del Evaluador</label>
+                        <input type="text" class="form-control" id="evaluatorName" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="interviewDate" class="form-label">Fecha de la Entrevista</label>
+                        <input type="date" class="form-control" id="interviewDate" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="interviewTime" class="form-label">Hora</label>
+                        <input type="time" class="form-control" id="interviewTime" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="candidateRole" class="form-label">Rol al que Postula</label>
+                        <input type="text" class="form-control" id="candidateRole" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dimensiones de Evaluación -->
+            <div class="form-section">
+                <h4>🔍 Dimensiones de Evaluación (1-5)</h4>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="conocimientoTecnico" class="form-label">Conocimiento Técnico</label>
+                        <input type="range" class="form-range" min="1" max="5" id="conocimientoTecnico">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="resolucionProblemas" class="form-label">Resolución de Problemas</label>
+                        <input type="range" class="form-range" min="1" max="5" id="resolucionProblemas">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="comunicacion" class="form-label">Comunicación</label>
+                        <input type="range" class="form-range" min="1" max="5" id="comunicacion">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="criterioProfesional" class="form-label">Criterio Profesional</label>
+                        <input type="range" class="form-range" min="1" max="5" id="criterioProfesional">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="fitCultural" class="form-label">Fit Cultural</label>
+                        <input type="range" class="form-range" min="1" max="5" id="fitCultural">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="motivacion" class="form-label">Motivación</label>
+                        <input type="range" class="form-range" min="1" max="5" id="motivacion">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Evaluación Técnica -->
+            <div class="form-section">
+                <h4>🛠️ Evaluación Técnica</h4>
+                <div class="mb-3">
+                    <label class="form-label">¿Se aplicó prueba técnica?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="pruebaTecnica" id="pruebaTecnicaSi" value="Si">
+                        <label class="form-check-label" for="pruebaTecnicaSi">Sí</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="pruebaTecnica" id="pruebaTecnicaNo" value="No" checked>
+                        <label class="form-check-label" for="pruebaTecnicaNo">No</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="resultadoPrueba" class="form-label">Resultado de la prueba técnica</label>
+                    <textarea class="form-control" id="resultadoPrueba" rows="2"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="herramientas" class="form-label">Herramientas o tecnologías dominadas</label>
+                    <input type="text" class="form-control" id="herramientas" placeholder="SQL, Python, Power BI, etc.">
+                </div>
+            </div>
+
+            <!-- Feedback del Entrevistador -->
+            <div class="form-section">
+                <h4>🗣️ Feedback del Entrevistador</h4>
+                <div class="mb-3">
+                    <label for="puntosFuertes" class="form-label">Puntos fuertes del candidato</label>
+                    <textarea class="form-control" id="puntosFuertes" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="oportunidadesMejora" class="form-label">Oportunidades de mejora</label>
+                    <textarea class="form-control" id="oportunidadesMejora" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="comentariosAdicionales" class="form-label">Comentarios adicionales</label>
+                    <textarea class="form-control" id="comentariosAdicionales" rows="3"></textarea>
+                </div>
+            </div>
+
+            <!-- Decisión y Avance -->
+            <div class="form-section">
+                <h4>📊 Decisión y Avance</h4>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">¿Pasa a la siguiente ronda?</label>
+                        <select class="form-select" id="pasaRonda">
+                            <option selected>Seleccionar...</option>
+                            <option value="Si">Sí</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Recomendación</label>
+                        <select class="form-select" id="recomendacion">
+                            <option selected>Seleccionar...</option>
+                            <option value="No">No</option>
+                            <option value="Tal vez">Tal vez</option>
+                            <option value="Sí">Sí</option>
+                            <option value="Sí con urgencia">Sí con urgencia</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Tipo de Nivel Detectado</label>
+                        <select class="form-select" id="nivelDetectado">
+                            <option selected>Seleccionar...</option>
+                            <option value="Junior">Junior</option>
+                            <option value="Semi Senior">Semi Senior</option>
+                            <option value="Senior">Senior</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Alineamiento con el Rol</label>
+                        <select class="form-select" id="alineamientoRol">
+                            <option selected>Seleccionar...</option>
+                            <option value="Bajo">Bajo</option>
+                            <option value="Medio">Medio</option>
+                            <option value="Alto">Alto</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trazabilidad del Registro -->
+            <div class="form-section">
+                <h4>📂 Trazabilidad del Registro</h4>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="estadoProceso" class="form-label">Estado del proceso</label>
+                        <select class="form-select" id="estadoProceso">
+                            <option selected>Seleccionar...</option>
+                            <option value="Pendiente">Pendiente</option>
+                            <option value="En evaluación">En evaluación</option>
+                            <option value="Cerrado">Cerrado</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="linkCV" class="form-label">Link al CV o portafolio</label>
+                        <input type="url" class="form-control" id="linkCV">
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="linkGrabacion" class="form-label">Link a grabación o formulario</label>
+                        <input type="url" class="form-control" id="linkGrabacion">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="usuarioRegistro" class="form-label">Usuario que registró</label>
+                        <input type="text" class="form-control" id="usuarioRegistro">
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg">Guardar Registro</button>
+            </div>
+
+        </form>
     </div>
-    <script src="sidebar.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

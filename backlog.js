@@ -1,73 +1,75 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const tableBody = document.querySelector('#interviews-table tbody');
-    const searchInput = document.getElementById('search-input');
-    const exportButton = document.getElementById('export-csv');
+    const tableBody = document.getElementById('interviews-table-body');
+    const searchInput = document.getElementById('searchInput');
+    const modalBody = document.getElementById('modal-body-content');
+    const detailsModal = new bootstrap.Modal(document.getElementById('detailsModal'));
     let interviews = JSON.parse(localStorage.getItem('interviews')) || [];
 
     function renderTable(data) {
         tableBody.innerHTML = '';
         data.forEach(interview => {
             const row = document.createElement('tr');
-            const indicators = interview.indicators;
-            const attitudeScore = indicators ? Object.values(indicators).reduce((acc, category) => {
-                return acc + Object.values(category).reduce((sum, value) => sum + parseInt(value), 0);
-            }, 0) : 0;
-
             row.innerHTML = `
                 <td>${interview.candidateName}</td>
-                <td>${interview.evaluatorName}</td>
-                <td>${interview.interviewDate}</td>
-                <td>${interview.interviewTime}</td>
                 <td>${interview.candidateRole}</td>
-                <td>${interview.totalScore}</td>
-                <td>${attitudeScore}</td>
-                <td>${interview.suggestedLevel}</td>
+                <td>${new Date(interview.interviewDate).toLocaleDateString()}</td>
+                <td>${interview.evaluatorName}</td>
+                <td><span class="badge bg-primary">${interview.totalScore}</span></td>
+                <td><span class="badge bg-info">${interview.suggestedLevel}</span></td>
+                <td><span class="badge bg-secondary">${interview.tracking.processStatus}</span></td>
+                <td>
+                    <button class="btn btn-sm btn-outline-primary view-details" data-id="${interview.id}">Ver Detalles</button>
+                </td>
             `;
             tableBody.appendChild(row);
         });
     }
 
-    function filterData(query) {
-        const lowerCaseQuery = query.toLowerCase();
-        return interviews.filter(interview => {
-            return Object.values(interview).some(value => {
-                if (typeof value === 'string') {
-                    return value.toLowerCase().includes(lowerCaseQuery);
-                }
-                if (typeof value === 'number') {
-                    return value.toString().includes(lowerCaseQuery);
-                }
-                return false;
-            });
-        });
+    function showDetails(id) {
+        const interview = interviews.find(i => i.id == id);
+        if (interview) {
+            modalBody.innerHTML = `
+                <h5>Datos Generales</h5>
+                <p><strong>Candidato:</strong> ${interview.candidateName}</p>
+                <p><strong>Rol:</strong> ${interview.candidateRole}</p>
+
+                <h5>Dimensiones de Evaluación</h5>
+                <ul>
+                    <li>Conocimiento Técnico: ${interview.dimensions.conocimientoTecnico}/5</li>
+                    <li>Resolución de Problemas: ${interview.dimensions.resolucionProblemas}/5</li>
+                    <li>Comunicación: ${interview.dimensions.comunicacion}/5</li>
+                    <li>Criterio Profesional: ${interview.dimensions.criterioProfesional}/5</li>
+                    <li>Fit Cultural: ${interview.dimensions.fitCultural}/5</li>
+                    <li>Motivación: ${interview.dimensions.motivacion}/5</li>
+                </ul>
+
+                <h5>Feedback</h5>
+                <p><strong>Puntos Fuertes:</strong> ${interview.feedback.strongPoints}</p>
+                <p><strong>Oportunidades de Mejora:</strong> ${interview.feedback.improvementOpportunities}</p>
+
+                <h5>Decisión</h5>
+                <p><strong>Recomendación:</strong> ${interview.decision.recommendation}</p>
+            `;
+            detailsModal.show();
+        }
     }
 
-    function exportToCsv() {
-        const headers = ['Candidato', 'Evaluador', 'Fecha', 'Hora', 'Rol', 'Puntaje Técnico', 'Puntaje Actitudinal', 'Nivel Sugerido'];
-        const rows = interviews.map(i => {
-            const indicators = i.indicators;
-            const attitudeScore = indicators ? Object.values(indicators).reduce((acc, category) => {
-                return acc + Object.values(category).reduce((sum, value) => sum + parseInt(value), 0);
-            }, 0) : 0;
-            return [i.candidateName, i.evaluatorName, i.interviewDate, i.interviewTime, i.candidateRole, i.totalScore, attitudeScore, i.suggestedLevel];
-        });
-        let csvContent = "data:text/csv;charset=utf-8," + headers.join(",") + "\n" + rows.map(e => e.join(",")).join("\n");
-        var encodedUri = encodeURI(csvContent);
-        var link = document.createElement("a");
-        link.setAttribute("href", encodedUri);
-        link.setAttribute("download", "registros_entrevistas.csv");
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }
-
-    if(searchInput) searchInput.addEventListener('input', (e) => {
-        const query = e.target.value;
-        const filteredData = filterData(query);
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        const filteredData = interviews.filter(i =>
+            i.candidateName.toLowerCase().includes(query) ||
+            i.candidateRole.toLowerCase().includes(query) ||
+            i.evaluatorName.toLowerCase().includes(query)
+        );
         renderTable(filteredData);
     });
 
-    if(exportButton) exportButton.addEventListener('click', exportToCsv);
+    tableBody.addEventListener('click', (e) => {
+        if (e.target.classList.contains('view-details')) {
+            const id = e.target.dataset.id;
+            showDetails(id);
+        }
+    });
 
     renderTable(interviews);
 });
